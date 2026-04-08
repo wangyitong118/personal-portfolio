@@ -5,7 +5,15 @@ import Link from 'next/link'
 import { useTheme } from './ThemeProvider'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { siteConfig, navigationData } from '@/data/site-data'
+
+const navItems = [
+  { name: '首页', href: '/' },
+  { name: '关于', href: '/' },
+  { name: '项目', href: '/' },
+  { name: '博客', href: '/' },
+  { name: '简历', href: '/' },
+  { name: '联系', href: '/' },
+]
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -32,7 +40,7 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex md:items-center md:space-x-8">
-            {navigationData.map((item, index) => (
+            {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -56,7 +64,7 @@ export default function Navbar() {
             </button>
             
             <Link
-              href="/contact"
+              href="/"
               className="px-5 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white text-sm font-medium hover:shadow-lg hover:shadow-pink-300/50 transition-all duration-300"
             >
               联系我
@@ -102,7 +110,7 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
           >
             <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
-              {navigationData.map((item, index) => (
+              {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -114,7 +122,7 @@ export default function Navbar() {
               ))}
               <div className="pt-4">
                 <Link
-                  href="/contact"
+                  href="/"
                   className="block w-full text-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
