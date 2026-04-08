@@ -68,7 +68,7 @@ export default function Hero() {
   const descParts = heroData.description.split(/\*\*(.*?)\*\*/g)
 
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center justify-center">
+    <section id="hero" className="relative overflow-hidden min-h-screen flex items-center justify-center">
       <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-white to-purple-50" />
       <ParticleBackground />
       

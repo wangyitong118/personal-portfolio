@@ -1,19 +1,26 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { useTheme } from './ThemeProvider'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const navItems = [
-  { name: '首页', href: '/' },
-  { name: '关于', href: '/' },
-  { name: '项目', href: '/' },
-  { name: '博客', href: '/' },
-  { name: '简历', href: '/' },
-  { name: '联系', href: '/' },
+  { name: '首页', href: '#hero' },
+  { name: '关于', href: '#skills' },
+  { name: '项目', href: '#projects' },
+  { name: '博客', href: '#projects' },
+  { name: '简历', href: '#experience' },
+  { name: '联系', href: '#contact' },
 ]
+
+function scrollToSection(href: string) {
+  const id = href.replace('#', '')
+  const element = document.getElementById(id)
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -28,27 +35,30 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="h-9 w-9 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-pink-300/50 transition-shadow duration-300">
-                <span className="text-white font-bold text-sm">W</span>
-              </div>
-              <span className="text-xl font-bold text-gray-900 tracking-tight">
-                Portfolio
-              </span>
-            </Link>
-          </div>
+          <a
+            href="#hero"
+            onClick={(e) => { e.preventDefault(); scrollToSection('#hero') }}
+            className="flex items-center space-x-3 group cursor-pointer"
+          >
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-pink-300/50 transition-shadow duration-300">
+              <span className="text-white font-bold text-sm">W</span>
+            </div>
+            <span className="text-xl font-bold text-gray-900 tracking-tight">
+              Portfolio
+            </span>
+          </a>
 
           <div className="hidden md:flex md:items-center md:space-x-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-gray-600 hover:text-pink-500 transition-colors relative group"
+                onClick={(e) => { e.preventDefault(); scrollToSection(item.href) }}
+                className="text-sm font-medium text-gray-600 hover:text-pink-500 transition-colors relative group cursor-pointer"
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-pink-500 to-purple-500 group-hover:w-full transition-all duration-300" />
-              </Link>
+              </a>
             ))}
             
             <button
@@ -63,12 +73,13 @@ export default function Navbar() {
               )}
             </button>
             
-            <Link
-              href="/"
-              className="px-5 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white text-sm font-medium hover:shadow-lg hover:shadow-pink-300/50 transition-all duration-300"
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollToSection('#contact') }}
+              className="px-5 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white text-sm font-medium hover:shadow-lg hover:shadow-pink-300/50 transition-all duration-300 cursor-pointer"
             >
               联系我
-            </Link>
+            </a>
           </div>
 
           <div className="flex md:hidden items-center space-x-4">
@@ -111,23 +122,23 @@ export default function Navbar() {
           >
             <div className="max-w-7xl mx-auto px-4 py-4 space-y-1">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.name}
                   href={item.href}
-                  className="block py-3 text-base font-medium text-gray-600 hover:text-pink-500 hover:bg-pink-50 px-4 rounded-xl transition-all"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => { e.preventDefault(); scrollToSection(item.href); setMobileMenuOpen(false) }}
+                  className="block py-3 text-base font-medium text-gray-600 hover:text-pink-500 hover:bg-pink-50 px-4 rounded-xl transition-all cursor-pointer"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
               <div className="pt-4">
-                <Link
-                  href="/"
-                  className="block w-full text-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
+                <a
+                  href="#contact"
+                  onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); setMobileMenuOpen(false) }}
+                  className="block w-full text-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white font-medium cursor-pointer"
                 >
                   联系我
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>

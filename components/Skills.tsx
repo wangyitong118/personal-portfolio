@@ -90,7 +90,7 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white" data-scroll-section>
+    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-white" data-scroll-section>
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}

@@ -82,7 +82,7 @@ export default function Experience() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-pink-50/30" data-scroll-section>
+    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-pink-50/30" data-scroll-section>
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={sectionRef}

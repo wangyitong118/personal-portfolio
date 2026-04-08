@@ -74,6 +74,7 @@ export default function Projects() {
 
   return (
     <section
+      id="projects"
       className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-pink-50/30 relative"
       data-scroll-section
     >
