@@ -90,7 +90,7 @@ export default function Hero() {
           </motion.div>
           
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-gray-900 mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-8"
             variants={itemVariants}
           >
             <span className="block">{heroData.greeting}</span>
@@ -100,7 +100,7 @@ export default function Hero() {
           </motion.h1>
           
           <motion.p
-            className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
             {descParts.map((part, i) =>
@@ -118,7 +118,7 @@ export default function Hero() {
           >
             <Link
               href="/projects"
-              className="group relative px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white font-semibold text-lg inline-flex items-center justify-center overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-pink-500/30"
+              className="group relative px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white font-medium text-base inline-flex items-center justify-center overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-pink-500/30"
             >
               <span className="relative z-10">查看我的项目</span>
               <ArrowRight className="ml-3 h-5 w-5 relative z-10 group-hover:translate-x-2 transition-transform" />
