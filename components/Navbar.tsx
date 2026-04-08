@@ -17,7 +17,11 @@ const navItems = [
 function scrollToSection(href: string) {
   const id = href.replace('#', '')
   const element = document.getElementById(id)
-  if (element) {
+  
+  const locoScroll = (window as any).__locoScroll
+  if (locoScroll && element) {
+    locoScroll.scrollTo(element)
+  } else if (element) {
     element.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 }

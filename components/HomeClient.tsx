@@ -20,7 +20,9 @@ export default function HomeClient() {
       try {
         const LocomotiveScroll = (await import('locomotive-scroll')).default
         if (!mounted) return
-        scrollRef.current = new LocomotiveScroll()
+        const scroll = new LocomotiveScroll()
+        scrollRef.current = scroll
+        ;(window as any).__locoScroll = scroll
       } catch (e) {
         console.warn('LocomotiveScroll init failed, using native scroll:', e)
       }
@@ -43,6 +45,7 @@ export default function HomeClient() {
         scrollRef.current.destroy()
         scrollRef.current = null
       }
+      ;(window as any).__locoScroll = null
     }
   }, [])
 
