@@ -186,7 +186,7 @@ export default function Projects() {
         variants={scaleAnimation}
         initial="initial"
         animate={modal.active ? 'enter' : 'closed'}
-        className="fixed top-1/2 left-1/2 w-[350px] h-[250px] md:w-[500px] md:h-[350px] pointer-events-none z-40 overflow-hidden rounded-xl"
+        className="fixed top-1/2 left-1/2 w-[240px] h-[170px] md:w-[320px] md:h-[220px] pointer-events-none z-40 overflow-hidden rounded-xl"
       >
         <div
           className="absolute w-full h-full transition-transform duration-500 ease-in-out"
@@ -199,8 +199,8 @@ export default function Projects() {
               style={{ backgroundColor: project.color }}
             >
               <div className="text-center text-white">
-                <div className="text-6xl font-bold mb-4">{project.title.charAt(0)}</div>
-                <div className="text-lg font-medium">{project.title}</div>
+                <div className="text-4xl font-bold mb-3">{project.title.charAt(0)}</div>
+                <div className="text-sm font-medium">{project.title}</div>
               </div>
             </div>
           ))}
