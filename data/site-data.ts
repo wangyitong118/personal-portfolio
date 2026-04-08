@@ -10,7 +10,7 @@ export const siteConfig = {
 }
 
 export const heroData = {
-  badge: '正在寻找新的机会',
+  badge: '✨ 正在寻找新的机会',
   greeting: '你好，我是',
   description:
     '一名充满热情的**数据科学家 & AI工程师**，专注于**数据驱动决策与智能系统构建**。拥有丰富的 **机器学习、深度学习和数据分析**经验。',
@@ -28,25 +28,25 @@ export const skillsData = [
     name: '数据管理与处理能力',
     description: 'SQL, Python, Pandas, Spark, 数据清洗, 特征工程, ETL流程',
     level: 90,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: 'from-pink-400 to-rose-400',
   },
   {
     name: '模型训练与评估技术',
     description: 'Scikit-learn, PyTorch, TensorFlow, 模型调优, 交叉验证, A/B测试',
     level: 85,
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: 'from-purple-400 to-fuchsia-400',
   },
   {
     name: '编程与工程化能力',
     description: 'Python, Git, Docker, CI/CD, 代码规范, 系统设计, API开发',
     level: 88,
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: 'from-teal-400 to-emerald-400',
   },
   {
     name: '软技能与业务思维',
     description: '需求分析, 数据驱动决策, 跨团队协作, 技术文档, 项目管理',
     level: 82,
-    gradient: 'from-orange-500 to-yellow-500',
+    gradient: 'from-amber-400 to-orange-400',
   },
 ]
 
@@ -58,7 +58,7 @@ export const projectsData = [
     technologies: ['Python', 'PyTorch', 'Scikit-learn', 'FastAPI'],
     githubUrl: 'https://github.com/yourusername/recommendation-system',
     liveUrl: 'https://recsys-demo.vercel.app',
-    color: '#0ea5e9',
+    color: '#f9a8d4',
   },
   {
     title: 'NLP 文本分类引擎',
@@ -67,7 +67,7 @@ export const projectsData = [
     technologies: ['Transformers', 'BERT', 'HuggingFace', 'Docker'],
     githubUrl: 'https://github.com/yourusername/nlp-classifier',
     liveUrl: 'https://nlp-demo.vercel.app',
-    color: '#a855f7',
+    color: '#c4b5fd',
   },
   {
     title: '数据可视化平台',
@@ -76,7 +76,7 @@ export const projectsData = [
     technologies: ['Python', 'Plotly', 'Streamlit', 'Pandas'],
     githubUrl: 'https://github.com/yourusername/data-viz-platform',
     liveUrl: 'https://dataviz-demo.vercel.app',
-    color: '#22c55e',
+    color: '#99f6e4',
   },
   {
     title: '计算机视觉检测系统',
@@ -85,7 +85,7 @@ export const projectsData = [
     technologies: ['YOLOv8', 'OpenCV', 'PyTorch', 'Flask'],
     githubUrl: 'https://github.com/yourusername/cv-inspection',
     liveUrl: 'https://cv-demo.vercel.app',
-    color: '#f97316',
+    color: '#fda4af',
   },
 ]
 
@@ -102,7 +102,7 @@ export const experiencesData = [
       '搭建了自动化特征工程流水线，模型开发效率提升50%',
       '构建了实时数据监控看板，支撑日均千万级数据处理',
     ],
-    color: 'from-cyan-500 to-blue-500',
+    color: 'from-pink-400 to-rose-400',
   },
   {
     company: '互联网公司',
@@ -116,7 +116,7 @@ export const experiencesData = [
       '实现了图像缺陷检测系统，替代人工质检效率提升10倍',
       '优化了模型推理速度，延迟降低60%',
     ],
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-purple-400 to-fuchsia-400',
   },
   {
     company: '数据服务公司',
@@ -130,7 +130,7 @@ export const experiencesData = [
       '学习了SQL和Python数据分析的最佳实践',
       '参与了A/B测试方案设计和效果评估',
     ],
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-teal-400 to-emerald-400',
   },
 ]
 
@@ -156,7 +156,7 @@ export const certificationsData = [
 ]
 
 export const ctaData = {
-  heading: '准备好开始合作了吗？',
+  heading: '准备好开始合作了吗？ 💫',
   description:
     '我正在寻找新的机会，期待与优秀的团队合作。如果你有合适的职位或项目，欢迎随时联系我！',
   stats: [

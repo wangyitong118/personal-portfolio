@@ -5,50 +5,30 @@ import { useRef, useState, useEffect } from 'react'
 import gsap from 'gsap'
 import { projectsData } from '@/data/site-data'
 
-const scaleAnimation = {
-  initial: { scale: 0, x: '-50%', y: '-50%' },
-  enter: {
-    scale: 1,
-    x: '-50%',
-    y: '-50%',
-    transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] },
-  },
-  closed: {
-    scale: 0,
-    x: '-50%',
-    y: '-50%',
-    transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] as [number, number, number, number] },
-  },
-}
-
 function ProjectItem({
   project,
   index,
-  manageModal,
 }: {
   project: (typeof projectsData)[0]
   index: number
-  manageModal: (active: boolean, index: number, x: number, y: number) => void
 }) {
   return (
     <motion.div
-      className="group border-b border-white/10 last:border-0"
+      className="group border-b border-pink-100 last:border-0"
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      onMouseEnter={(e) => manageModal(true, index, e.clientX, e.clientY)}
-      onMouseLeave={(e) => manageModal(false, index, e.clientX, e.clientY)}
       data-scroll
       data-scroll-speed={0.05}
     >
       <div className="flex items-center justify-between py-8 px-4 cursor-pointer group-hover:px-8 transition-all duration-500">
         <div className="flex items-center gap-8">
-          <span className="text-5xl md:text-7xl font-bold text-white/10 group-hover:text-white/30 transition-colors duration-500">
+          <span className="text-5xl md:text-7xl font-bold text-pink-100 group-hover:text-pink-200 transition-colors duration-500">
             {String(index + 1).padStart(2, '0')}
           </span>
           <div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-pink-500 transition-colors duration-300">
               {project.title}
             </h3>
             <p className="text-gray-500 mt-2 max-w-md">{project.description}</p>
@@ -56,7 +36,7 @@ function ProjectItem({
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs px-3 py-1 rounded-full bg-white/5 text-gray-400 border border-white/10"
+                  className="text-xs px-3 py-1 rounded-full bg-pink-50 text-gray-500 border border-pink-100"
                 >
                   {tech}
                 </span>
@@ -69,17 +49,17 @@ function ProjectItem({
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full border border-white/20 hover:bg-white/10 transition-colors"
+            className="p-3 rounded-full border border-pink-200 hover:bg-pink-50 transition-colors"
           >
-            <Globe className="h-5 w-5 text-white" />
+            <Globe className="h-5 w-5 text-gray-600" />
           </a>
           <a
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full border border-white/20 hover:bg-white/10 transition-colors"
+            className="p-3 rounded-full border border-pink-200 hover:bg-pink-50 transition-colors"
           >
-            <ExternalLink className="h-5 w-5 text-white" />
+            <ExternalLink className="h-5 w-5 text-gray-600" />
           </a>
         </div>
       </div>
@@ -88,67 +68,14 @@ function ProjectItem({
 }
 
 export default function Projects() {
-  const [modal, setModal] = useState({ active: false, index: 0 })
-  const modalContainer = useRef(null)
-  const cursor = useRef(null)
-  const cursorLabel = useRef(null)
+  const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
-  let xMoveContainer = useRef<((x: number) => void) | null>(null)
-  let yMoveContainer = useRef<((y: number) => void) | null>(null)
-  let xMoveCursor = useRef<((x: number) => void) | null>(null)
-  let yMoveCursor = useRef<((y: number) => void) | null>(null)
-  let xMoveCursorLabel = useRef<((x: number) => void) | null>(null)
-  let yMoveCursorLabel = useRef<((y: number) => void) | null>(null)
-
-  useEffect(() => {
-    if (!modalContainer.current) return
-    xMoveContainer.current = gsap.quickTo(modalContainer.current, 'left', {
-      duration: 0.8,
-      ease: 'power3',
-    })
-    yMoveContainer.current = gsap.quickTo(modalContainer.current, 'top', {
-      duration: 0.8,
-      ease: 'power3',
-    })
-    xMoveCursor.current = gsap.quickTo(cursor.current, 'left', {
-      duration: 0.5,
-      ease: 'power3',
-    })
-    yMoveCursor.current = gsap.quickTo(cursor.current, 'top', {
-      duration: 0.5,
-      ease: 'power3',
-    })
-    xMoveCursorLabel.current = gsap.quickTo(cursorLabel.current, 'left', {
-      duration: 0.45,
-      ease: 'power3',
-    })
-    yMoveCursorLabel.current = gsap.quickTo(cursorLabel.current, 'top', {
-      duration: 0.45,
-      ease: 'power3',
-    })
-  }, [])
-
-  const moveItems = (x: number, y: number) => {
-    xMoveContainer.current?.(x)
-    yMoveContainer.current?.(y)
-    xMoveCursor.current?.(x)
-    yMoveCursor.current?.(y)
-    xMoveCursorLabel.current?.(x)
-    yMoveCursorLabel.current?.(y)
-  }
-
-  const manageModal = (active: boolean, index: number, x: number, y: number) => {
-    moveItems(x, y)
-    setModal({ active, index })
-  }
-
   return (
     <section
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-gray-950 relative"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-pink-50/30 relative"
       data-scroll-section
-      onMouseMove={(e) => moveItems(e.clientX, e.clientY)}
     >
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -158,13 +85,13 @@ export default function Projects() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <span className="inline-block text-sm font-medium text-cyan-400 tracking-widest uppercase mb-4">
+          <span className="inline-block text-sm font-medium text-pink-500 tracking-widest uppercase mb-4">
             Selected Work
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
             项目展示
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
             以下是我最近完成的一些项目，展示了我的技术能力和解决问题的能力。
           </p>
         </motion.div>
@@ -175,54 +102,75 @@ export default function Projects() {
               key={project.title}
               project={project}
               index={index}
-              manageModal={manageModal}
             />
           ))}
         </div>
       </div>
 
-      <motion.div
-        ref={modalContainer}
-        variants={scaleAnimation}
-        initial="initial"
-        animate={modal.active ? 'enter' : 'closed'}
-        className="fixed top-1/2 left-1/2 w-[240px] h-[170px] md:w-[320px] md:h-[220px] pointer-events-none z-40 overflow-hidden rounded-xl"
-      >
-        <div
-          className="absolute w-full h-full transition-transform duration-500 ease-in-out"
-          style={{ top: `${modal.index * -100}%` }}
-        >
-          {projectsData.map((project, index) => (
-            <div
-              key={`modal_${index}`}
-              className="w-full h-full flex items-center justify-center"
-              style={{ backgroundColor: project.color }}
+      <AnimatePresence>
+        {selectedProject !== null && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              className="relative bg-white rounded-2xl shadow-2xl overflow-hidden max-w-md w-full"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="text-center text-white">
-                <div className="text-4xl font-bold mb-3">{project.title.charAt(0)}</div>
-                <div className="text-sm font-medium">{project.title}</div>
+              <div
+                className="h-40 flex items-center justify-center"
+                style={{ backgroundColor: projectsData[selectedProject].color }}
+              >
+                <div className="text-center text-white">
+                  <div className="text-5xl font-bold mb-2">{projectsData[selectedProject].title.charAt(0)}</div>
+                  <div className="text-lg">{projectsData[selectedProject].title}</div>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-
-      <motion.div
-        ref={cursor}
-        className="fixed top-1/2 left-1/2 w-[80px] h-[80px] rounded-full border-2 border-white/30 pointer-events-none z-40 mix-blend-difference"
-        variants={scaleAnimation}
-        initial="initial"
-        animate={modal.active ? 'enter' : 'closed'}
-      />
-      <motion.div
-        ref={cursorLabel}
-        className="fixed top-1/2 left-1/2 text-white text-sm font-medium pointer-events-none z-40 mix-blend-difference"
-        variants={scaleAnimation}
-        initial="initial"
-        animate={modal.active ? 'enter' : 'closed'}
-      >
-        View
-      </motion.div>
+              <div className="p-6">
+                <p className="text-gray-600 mb-4">{projectsData[selectedProject].description}</p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {projectsData[selectedProject].technologies.map((tech) => (
+                    <span key={tech} className="text-xs px-2 py-1 rounded-full bg-pink-100 text-gray-600">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  <a
+                    href={projectsData[selectedProject].githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-2 px-4 rounded-xl bg-pink-100 text-pink-700 text-center text-sm font-medium hover:bg-pink-200 transition-colors"
+                  >
+                    查看代码
+                  </a>
+                  <a
+                    href={projectsData[selectedProject].liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-2 px-4 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 text-white text-center text-sm font-medium hover:shadow-lg transition-all"
+                  >
+                    在线预览
+                  </a>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-3 right-3 p-2 rounded-full bg-white/80 hover:bg-white text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                ✕
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

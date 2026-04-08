@@ -12,7 +12,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-white/10">
+    <footer className="bg-white border-t border-pink-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex flex-col items-center">
           <motion.div
@@ -22,10 +22,10 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center">
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center shadow-md">
               <span className="text-white font-bold text-sm">W</span>
             </div>
-            <span className="text-xl font-bold text-white tracking-tight">
+            <span className="text-xl font-bold text-gray-900 tracking-tight">
               Portfolio
             </span>
           </motion.div>
@@ -39,7 +39,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
+                  className="p-3 rounded-xl bg-pink-50 border border-pink-100 text-gray-400 hover:text-pink-500 hover:bg-pink-100 transition-all duration-300"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -54,10 +54,10 @@ export default function Footer() {
           </div>
 
           <div className="text-center">
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-400 text-sm">
               © {new Date().getFullYear()} {siteConfig.name}. 保留所有权利.
             </p>
-            <p className="text-gray-600 text-xs mt-2">
+            <p className="text-gray-300 text-xs mt-2">
               使用 Next.js + Framer Motion + GSAP 构建
             </p>
           </div>

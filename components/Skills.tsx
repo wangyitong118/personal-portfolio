@@ -45,33 +45,33 @@ function SkillCard({ skill, index }: { skill: typeof skillsData[0]; index: numbe
   return (
     <motion.div
       ref={ref}
-      className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-500 overflow-hidden"
+      className="group relative bg-white backdrop-blur-sm border border-pink-100 rounded-2xl p-6 hover:shadow-lg hover:shadow-pink-100/50 transition-all duration-500 overflow-hidden"
       variants={itemVariants}
       whileHover={{ y: -8, scale: 1.02 }}
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${skill.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+      <div className={`absolute inset-0 bg-gradient-to-br ${skill.gradient} opacity-0 group-hover:opacity-[0.06] transition-opacity duration-500`} />
       
       <div className="relative z-10">
         <div className="flex items-start space-x-4 mb-6">
-          <div className={`p-3 rounded-xl bg-gradient-to-br ${skill.gradient}`}>
+          <div className={`p-3 rounded-xl bg-gradient-to-br ${skill.gradient} shadow-md`}>
             <Icon className="h-6 w-6 text-white" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-white">
+            <h3 className="text-lg font-semibold text-gray-900">
               {skill.name}
             </h3>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-500">
               {skill.description}
             </p>
           </div>
         </div>
         
         <div className="mt-4">
-          <div className="flex justify-between text-sm text-gray-400 mb-2">
+          <div className="flex justify-between text-sm text-gray-500 mb-2">
             <span>熟练度</span>
-            <span className="text-white font-medium">{skill.level}%</span>
+            <span className="text-gray-800 font-medium">{skill.level}%</span>
           </div>
-          <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+          <div className="h-2.5 bg-pink-100 rounded-full overflow-hidden">
             <motion.div
               className={`h-full bg-gradient-to-r ${skill.gradient} rounded-full`}
               initial={{ width: 0 }}
@@ -90,7 +90,7 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-black" data-scroll-section>
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white" data-scroll-section>
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}
@@ -100,17 +100,17 @@ export default function Skills() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <motion.span
-            className="inline-block text-sm font-medium text-cyan-400 tracking-widest uppercase mb-4"
+            className="inline-block text-sm font-medium text-pink-500 tracking-widest uppercase mb-4"
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             What I Do
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
             核心技能
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
             专注于数据科学与人工智能领域，具备从数据处理到模型部署的完整能力链。
           </p>
         </motion.div>
@@ -132,12 +132,12 @@ export default function Skills() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          <p className="text-gray-400 text-lg">
+          <p className="text-gray-500 text-lg">
             持续深耕数据科学与AI领域，保持对前沿技术的敏感度。
           </p>
           <p className="mt-3">
             目前正在探索：
-            <span className="font-medium bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+            <span className="font-medium bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
               {' '}大语言模型 • 多模态AI • MLOps
             </span>
           </p>

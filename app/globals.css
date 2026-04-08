@@ -4,23 +4,23 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 98%;
+    --foreground: 240 10% 15%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
+    --card-foreground: 240 10% 15%;
+    --primary: 330 81% 60%;
+    --primary-foreground: 0 0% 100%;
+    --border: 270 20% 90%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --border: 217.2 32.6% 17.5%;
+    --background: 240 10% 8%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 12%;
+    --card-foreground: 0 0% 98%;
+    --primary: 280 80% 65%;
+    --primary-foreground: 0 0% 100%;
+    --border: 240 10% 20%;
   }
 }
 
@@ -36,11 +36,11 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-lg bg-primary-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 transition-colors duration-200;
+    @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-purple-500 px-6 py-3 text-sm font-semibold text-white shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-purple-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300;
   }
   
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 transition-colors duration-200;
+    @apply inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-gray-700 shadow-md ring-1 ring-inset ring-pink-200 hover:bg-pink-50 hover:ring-pink-300 transition-all duration-300;
   }
   
   .section-padding {
@@ -56,15 +56,14 @@
   }
   
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-gray-700;
+    @apply bg-white rounded-2xl shadow-lg p-6 border border-pink-100;
   }
   
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-blue-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent;
   }
 }
 
-/* Locomotive Scroll styles */
 html.has-scroll-smooth {
   overflow: hidden;
 }
@@ -97,7 +96,6 @@ html.has-scroll-dragging {
   height: 100%;
 }
 
-/* Custom animations */
 @keyframes fade-in {
   from {
     opacity: 0;
