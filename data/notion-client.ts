@@ -24,6 +24,7 @@ interface SkillData {
   description: string
   level: number
   gradient: string
+  icon?: string
 }
 
 interface ProjectData {
@@ -33,6 +34,7 @@ interface ProjectData {
   githubUrl: string
   liveUrl: string
   color: string
+  icon?: string
 }
 
 interface ExperienceData {
@@ -43,6 +45,7 @@ interface ExperienceData {
   description: string
   achievements: string[]
   color: string
+  icon?: string
 }
 
 async function notionFetch(path: string, options: RequestInit = {}) {
@@ -88,6 +91,19 @@ function extractMultiSelect(multiSelectObj?: any): string[] {
 function extractUrl(urlObj?: any): string {
   if (!urlObj || !urlObj.url) return ''
   return urlObj.url
+}
+
+function extractIcon(page?: any): string {
+  if (!page) return ''
+  if (page.icon?.emoji) return page.icon.emoji
+  if (page.icon?.type === 'external' && page.icon.external?.url) return page.icon.external.url
+  if (page.icon?.type === 'file' && page.icon.file?.url) return page.icon.file.url
+  return ''
+}
+
+function extractSelect(selectObj?: any): string {
+  if (!selectObj || !selectObj.select?.name) return ''
+  return selectObj.select.name
 }
 
 export async function fetchSiteConfig(): Promise<SiteConfigData> {
@@ -160,6 +176,7 @@ export async function fetchSkillsData(): Promise<SkillData[]> {
         description: extractText(props.描述?.rich_text) || extractText(props.Description?.rich_text) || '',
         level: extractNumber(props.熟练度) || extractNumber(props.Level) || 0,
         gradient: gradients[index % gradients.length] || 'from-pink-400 to-rose-400',
+        icon: extractIcon(page) || props.图标?.select?.name || props.Icon?.select?.name || '💡',
       }
     })
   } catch (error) {
@@ -197,6 +214,7 @@ export async function fetchProjectsData(): Promise<ProjectData[]> {
         githubUrl: extractUrl(props.GitHub) || 'https://github.com/yourusername',
         liveUrl: extractUrl(props.LiveURL) || 'https://demo.vercel.app',
         color: colors[index % colors.length] || '#f9a8d4',
+        icon: extractIcon(page) || props.图标?.select?.name || props.Icon?.select?.name || '🚀',
       }
     })
   } catch (error) {
@@ -237,6 +255,7 @@ export async function fetchExperiencesData(): Promise<ExperienceData[]> {
         description: extractText(props.描述?.rich_text) || extractText(props.Description?.rich_text) || '',
         achievements,
         color: gradients[index % gradients.length] || 'from-pink-400 to-rose-400',
+        icon: extractIcon(page) || props.图标?.select?.name || props.Icon?.select?.name || '💼',
       }
     })
   } catch (error) {

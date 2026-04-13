@@ -17,7 +17,7 @@ async function testNotionConnection() {
   const databaseId = process.env.NOTION_DATABASE_ID;
 
   console.log('📋 环境变量检查:');
-  console.log(`   NOTION_API_KEY: ${apiKey ? '已设置' + (apiKey.startsWith('secret_') ? ' (格式正确)' : ' (格式可能不正确)') : '未设置'}`);
+  console.log(`   NOTION_API_KEY: ${apiKey ? '已设置' + (apiKey.startsWith('secret_') || apiKey.startsWith('ntn_') ? ' (格式正确)' : ' (格式可能不正确)') : '未设置'}`);
   console.log(`   NOTION_DATABASE_ID: ${databaseId ? '已设置 (' + databaseId.length + '字符)' : '未设置'}`);
 
   if (!apiKey || !databaseId) {
@@ -26,8 +26,8 @@ async function testNotionConnection() {
     return false;
   }
 
-  if (!apiKey.startsWith('secret_')) {
-    console.warn('\n⚠️  警告: API密钥格式可能不正确，应以 "secret_" 开头');
+  if (!apiKey.startsWith('secret_') && !apiKey.startsWith('ntn_')) {
+    console.warn('\n⚠️  警告: API密钥格式可能不正确，应以 "secret_" 或 "ntn_" 开头');
   }
 
   // 测试Notion客户端
