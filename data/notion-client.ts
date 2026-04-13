@@ -1,8 +1,15 @@
 import { Client } from '@notionhq/client'
 
-// Initialize Notion client
+// Initialize Notion client with support for internal integration tokens (ntn_)
+const apiKey = process.env.NOTION_API_KEY || ''
 const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
+  auth: apiKey,
+  // Support for internal integration tokens
+  ...(apiKey.startsWith('ntn_') ? {
+    headers: {
+      'Notion-Version': '2022-06-28',
+    }
+  } : {}),
 })
 
 // Types for Notion database properties
