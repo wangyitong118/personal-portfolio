@@ -9,7 +9,29 @@ import Projects from './Projects'
 import Experience from './Experience'
 import CallToAction from './CallToAction'
 
-export default function HomeClient() {
+interface HomeClientProps {
+  siteConfig: any
+  heroData: any
+  skillsData: any[]
+  projectsData: any[]
+  experiencesData: any[]
+  educationData: any[]
+  certificationsData: any[]
+  ctaData: any
+  navigationData: any[]
+}
+
+export default function HomeClient({
+  siteConfig,
+  heroData,
+  skillsData,
+  projectsData,
+  experiencesData,
+  educationData,
+  certificationsData,
+  ctaData,
+  navigationData,
+}: HomeClientProps) {
   const [isLoading, setIsLoading] = useState(true)
   const scrollRef = useRef<any>(null)
 
@@ -56,11 +78,15 @@ export default function HomeClient() {
       </AnimatePresence>
       {!isLoading && (
         <div data-scroll-container>
-          <Hero />
-          <Skills />
-          <Projects />
-          <Experience />
-          <CallToAction />
+          <Hero siteConfig={siteConfig} heroData={heroData} />
+          <Skills skillsData={skillsData} />
+          <Projects projectsData={projectsData} />
+          <Experience 
+            experiencesData={experiencesData}
+            educationData={educationData}
+            certificationsData={certificationsData}
+          />
+          <CallToAction ctaData={ctaData} />
         </div>
       )}
     </>

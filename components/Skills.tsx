@@ -2,7 +2,9 @@
 import { Database, Brain, Code, Users } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { skillsData } from '@/data/site-data'
+interface SkillsProps {
+  skillsData: any[]
+}
 
 const skillIcons = [Database, Brain, Code, Users]
 
@@ -30,7 +32,14 @@ const itemVariants = {
   },
 }
 
-function SkillCard({ skill, index }: { skill: typeof skillsData[0]; index: number }) {
+interface Skill {
+  name: string
+  description: string
+  level: number
+  gradient: string
+}
+
+function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-50px' })
   const Icon = skillIcons[index % skillIcons.length]
@@ -77,7 +86,7 @@ function SkillCard({ skill, index }: { skill: typeof skillsData[0]; index: numbe
   )
 }
 
-export default function Skills() {
+export default function Skills({ skillsData }: SkillsProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 

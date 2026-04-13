@@ -2,7 +2,11 @@
 import { Briefcase, Calendar, MapPin, Award, GraduationCap } from 'lucide-react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { experiencesData, educationData, certificationsData } from '@/data/site-data'
+interface ExperienceProps {
+  experiencesData: any[]
+  educationData: any[]
+  certificationsData: any[]
+}
 
 function TimelineItem({
   item,
@@ -77,7 +81,7 @@ function TimelineItem({
   )
 }
 
-export default function Experience() {
+export default function Experience({ experiencesData, educationData, certificationsData }: ExperienceProps) {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 

@@ -3,14 +3,27 @@ import { ExternalLink, Globe } from 'lucide-react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import gsap from 'gsap'
-import { projectsData } from '@/data/site-data'
+interface ProjectsProps {
+  projectsData: any[]
+}
+
+interface Project {
+  title: string
+  description: string
+  technologies: string[]
+  githubUrl: string
+  liveUrl: string
+  color: string
+}
 
 function ProjectItem({
   project,
   index,
+  onSelectProject,
 }: {
-  project: (typeof projectsData)[0]
+  project: Project
   index: number
+  onSelectProject: (index: number) => void
 }) {
   return (
     <motion.div
@@ -22,7 +35,10 @@ function ProjectItem({
       data-scroll
       data-scroll-speed={0.05}
     >
-      <div className="flex items-center justify-between py-8 px-4 cursor-pointer group-hover:px-8 transition-all duration-500">
+      <div 
+        className="flex items-center justify-between py-8 px-4 cursor-pointer group-hover:px-8 transition-all duration-500"
+        onClick={() => onSelectProject(index)}
+      >
         <div className="flex items-center gap-8">
           <span className="text-5xl md:text-7xl font-bold text-pink-100 group-hover:text-pink-200 transition-colors duration-500">
             {String(index + 1).padStart(2, '0')}
@@ -50,6 +66,7 @@ function ProjectItem({
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 rounded-full border border-pink-200 hover:bg-pink-50 transition-colors"
+            onClick={(e) => e.stopPropagation()}
           >
             <Globe className="h-5 w-5 text-gray-600" />
           </a>
@@ -58,6 +75,7 @@ function ProjectItem({
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 rounded-full border border-pink-200 hover:bg-pink-50 transition-colors"
+            onClick={(e) => e.stopPropagation()}
           >
             <ExternalLink className="h-5 w-5 text-gray-600" />
           </a>
@@ -67,7 +85,7 @@ function ProjectItem({
   )
 }
 
-export default function Projects() {
+export default function Projects({ projectsData }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
@@ -103,6 +121,7 @@ export default function Projects() {
               key={project.title}
               project={project}
               index={index}
+              onSelectProject={setSelectedProject}
             />
           ))}
         </div>

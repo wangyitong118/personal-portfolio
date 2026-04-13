@@ -4,10 +4,14 @@ import { ArrowRight, Brain, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useRef, useEffect, useCallback } from 'react'
 import gsap from 'gsap'
-import { siteConfig, heroData } from '@/data/site-data'
 import ParticleBackground from './ParticleBackground'
 
-export default function Hero() {
+interface HeroProps {
+  siteConfig: any
+  heroData: any
+}
+
+export default function Hero({ siteConfig, heroData }: HeroProps) {
   const firstText = useRef(null)
   const secondText = useRef(null)
   const slider = useRef(null)

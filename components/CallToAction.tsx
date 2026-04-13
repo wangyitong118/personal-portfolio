@@ -3,38 +3,49 @@ import { Mail, FileText, Phone, ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { siteConfig, ctaData } from '@/data/site-data'
+interface CallToActionProps {
+  ctaData: any
+  siteConfig?: any
+}
 
-const contactMethods = [
-  {
-    icon: Mail,
-    title: '发送邮件',
-    description: siteConfig.email,
-    action: '发送邮件',
-    href: `mailto:${siteConfig.email}`,
-    gradient: 'from-pink-500 to-rose-500',
-  },
-  {
-    icon: Phone,
-    title: '电话联系',
-    description: siteConfig.phone,
-    action: '拨打电话',
-    href: `tel:${siteConfig.phone}`,
-    gradient: 'from-purple-500 to-fuchsia-500',
-  },
-  {
-    icon: FileText,
-    title: '查看简历',
-    description: '下载我的详细简历，了解更多信息',
-    action: '查看简历',
-    href: '/resume',
-    gradient: 'from-teal-500 to-emerald-500',
-  },
-]
 
-export default function CallToAction() {
+
+export default function CallToAction({ ctaData, siteConfig }: CallToActionProps) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+
+  // Fallback siteConfig if not provided
+  const config = siteConfig || {
+    email: '15141251539@163.com',
+    phone: '15141251539'
+  }
+
+  const contactMethods = [
+    {
+      icon: Mail,
+      title: '发送邮件',
+      description: config.email,
+      action: '发送邮件',
+      href: `mailto:${config.email}`,
+      gradient: 'from-pink-500 to-rose-500',
+    },
+    {
+      icon: Phone,
+      title: '电话联系',
+      description: config.phone,
+      action: '拨打电话',
+      href: `tel:${config.phone}`,
+      gradient: 'from-purple-500 to-fuchsia-500',
+    },
+    {
+      icon: FileText,
+      title: '查看简历',
+      description: '下载我的详细简历，了解更多信息',
+      action: '查看简历',
+      href: '/resume',
+      gradient: 'from-teal-500 to-emerald-500',
+    },
+  ]
 
   return (
     <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-pink-50/50 relative overflow-hidden" data-scroll-section>
