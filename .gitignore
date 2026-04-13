@@ -38,3 +38,6 @@ temp-awwwards-template
 
 # exe
 *.exe
+
+# forge-skills (git submodule)
+/forge-skills
