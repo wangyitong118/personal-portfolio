@@ -18,7 +18,7 @@ interface SiteConfigData {
   linkedin: string
   twitter: string
 }
-
+ 
 interface SkillData {
   name: string
   description: string
@@ -114,10 +114,10 @@ export async function fetchSiteConfig(): Promise<SiteConfigData> {
       method: 'POST',
       body: JSON.stringify({
         filter: {
-          or: [
-            { property: '类型', select: { equals: 'SiteConfig' } },
-            { property: 'Type', select: { equals: 'SiteConfig' } }
-          ]
+          property: '类型',
+          select: {
+            equals: 'SiteConfig'
+          }
         },
         page_size: 1,
       }),
@@ -129,11 +129,11 @@ export async function fetchSiteConfig(): Promise<SiteConfigData> {
     const props = page.properties
 
     return {
-      name: extractTitle(props.名称?.title) || extractTitle(props.Name?.title) || '王一彤',
-      title: extractText(props.标题?.rich_text) || extractText(props.Title?.rich_text) || '数据科学家 & AI工程师',
-      email: extractText(props.邮箱?.rich_text) || extractText(props.Email?.rich_text) || '15141251539@163.com',
-      phone: extractText(props.电话?.rich_text) || extractText(props.Phone?.rich_text) || '15141251539',
-      location: extractText(props.地点?.rich_text) || extractText(props.Location?.rich_text) || '远程 / 北京 / 上海 / 杭州',
+      name: extractTitle(props.名称?.title) || '王一彤',
+      title: extractText(props.标题?.rich_text) || '数据科学家 & AI工程师',
+      email: extractText(props.邮箱?.rich_text) || '15141251539@163.com',
+      phone: extractText(props.电话?.rich_text) || '15141251539',
+      location: extractText(props.地点?.rich_text) || '远程 / 北京 / 上海 / 杭州',
       github: extractUrl(props.GitHub) || 'https://github.com/yourusername',
       linkedin: extractUrl(props.LinkedIn) || 'https://linkedin.com/in/yourusername',
       twitter: extractUrl(props.Twitter) || 'https://twitter.com/yourusername',
@@ -159,10 +159,10 @@ export async function fetchSkillsData(): Promise<SkillData[]> {
       method: 'POST',
       body: JSON.stringify({
         filter: {
-          or: [
-            { property: '类型', select: { equals: 'Skill' } },
-            { property: 'Type', select: { equals: 'Skill' } }
-          ]
+          property: '类型',
+          select: {
+            equals: 'Skill'
+          }
         },
         sorts: [{ property: '排序', direction: 'ascending' }],
         page_size: 100,
@@ -172,11 +172,11 @@ export async function fetchSkillsData(): Promise<SkillData[]> {
     return (response.results as NotionPage[]).map((page, index) => {
       const props = page.properties
       return {
-        name: extractTitle(props.名称?.title) || extractTitle(props.Name?.title) || '未命名技能',
-        description: extractText(props.描述?.rich_text) || extractText(props.Description?.rich_text) || '',
-        level: extractNumber(props.熟练度) || extractNumber(props.Level) || 0,
+        name: extractTitle(props.名称?.title) || '未命名技能',
+        description: extractText(props.描述?.rich_text) || '',
+        level: extractNumber(props.熟练度) || 0,
         gradient: gradients[index % gradients.length] || 'from-pink-400 to-rose-400',
-        icon: extractIcon(page) || props.图标?.select?.name || props.Icon?.select?.name || '💡',
+        icon: extractIcon(page) || props.图标?.select?.name || '💡',
       }
     })
   } catch (error) {
@@ -195,10 +195,10 @@ export async function fetchProjectsData(): Promise<ProjectData[]> {
       method: 'POST',
       body: JSON.stringify({
         filter: {
-          or: [
-            { property: '类型', select: { equals: 'Project' } },
-            { property: 'Type', select: { equals: 'Project' } }
-          ]
+          property: '类型',
+          select: {
+            equals: 'Project'
+          }
         },
         sorts: [{ property: '排序', direction: 'ascending' }],
         page_size: 100,
@@ -208,13 +208,13 @@ export async function fetchProjectsData(): Promise<ProjectData[]> {
     return (response.results as NotionPage[]).map((page, index) => {
       const props = page.properties
       return {
-        title: extractTitle(props.名称?.title) || extractTitle(props.Title?.title) || '未命名项目',
-        description: extractText(props.描述?.rich_text) || extractText(props.Description?.rich_text) || '',
-        technologies: extractMultiSelect(props.技术栈) || extractMultiSelect(props.Technologies) || [],
+        title: extractTitle(props.名称?.title) || '未命名项目',
+        description: extractText(props.描述?.rich_text) || '',
+        technologies: extractMultiSelect(props.技术栈) || [],
         githubUrl: extractUrl(props.GitHub) || 'https://github.com/yourusername',
         liveUrl: extractUrl(props.LiveURL) || 'https://demo.vercel.app',
         color: colors[index % colors.length] || '#f9a8d4',
-        icon: extractIcon(page) || props.图标?.select?.name || props.Icon?.select?.name || '🚀',
+        icon: extractIcon(page) || props.图标?.select?.name || '🚀',
       }
     })
   } catch (error) {
@@ -231,10 +231,10 @@ export async function fetchExperiencesData(): Promise<ExperienceData[]> {
       method: 'POST',
       body: JSON.stringify({
         filter: {
-          or: [
-            { property: '类型', select: { equals: 'Experience' } },
-            { property: 'Type', select: { equals: 'Experience' } }
-          ]
+          property: '类型',
+          select: {
+            equals: 'Experience'
+          }
         },
         sorts: [{ property: '排序', direction: 'ascending' }],
         page_size: 100,
@@ -244,18 +244,18 @@ export async function fetchExperiencesData(): Promise<ExperienceData[]> {
     return (response.results as NotionPage[]).map((page, index) => {
       const props = page.properties
       
-      const achievementsText = extractText(props.成就?.rich_text) || extractText(props.Achievements?.rich_text) || ''
+      const achievementsText = extractText(props.成就?.rich_text) || ''
       const achievements = achievementsText.split('\n').filter(line => line.trim())
 
       return {
-        company: extractText(props.公司?.rich_text) || extractText(props.Company?.rich_text) || '公司名称',
-        position: extractText(props.职位?.rich_text) || extractText(props.Position?.rich_text) || '职位',
-        period: extractText(props.时间段?.rich_text) || extractText(props.Period?.rich_text) || '时间段',
-        location: extractText(props.地点?.rich_text) || extractText(props.Location?.rich_text) || '地点',
-        description: extractText(props.描述?.rich_text) || extractText(props.Description?.rich_text) || '',
+        company: extractText(props.公司?.rich_text) || '公司名称',
+        position: extractText(props.职位?.rich_text) || '职位',
+        period: extractText(props.时间段?.rich_text) || '时间段',
+        location: extractText(props.地点?.rich_text) || '地点',
+        description: extractText(props.描述?.rich_text) || '',
         achievements,
         color: gradients[index % gradients.length] || 'from-pink-400 to-rose-400',
-        icon: extractIcon(page) || props.图标?.select?.name || props.Icon?.select?.name || '💼',
+        icon: extractIcon(page) || props.图标?.select?.name || '💼',
       }
     })
   } catch (error) {
