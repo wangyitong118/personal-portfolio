@@ -135,13 +135,13 @@ export default function CallToAction({ ctaData, siteConfig }: CallToActionProps)
           <div className="text-center">
             <p className="text-gray-600 text-lg">
               目前状态：
-              <span className="font-bold text-pink-500">{ctaData.status}</span>
+              <span className="font-bold text-pink-500">{ctaData?.status || '积极寻找新的机会'}</span>
             </p>
             <p className="text-sm text-gray-400 mt-2">
-              期望职位：{ctaData.expectedPosition}
+              期望职位：{ctaData?.expectedPosition || '数据科学家 / AI工程师'}
             </p>
             <p className="text-sm text-gray-400">
-              工作地点：{siteConfig.location}
+              工作地点：{siteConfig?.location || '远程 / 北京 / 上海 / 杭州'}
             </p>
           </div>
         </motion.div>
