@@ -194,11 +194,11 @@ export async function getSiteData() {
     
     // Transform Notion data to match our schema
     return {
-      siteConfig: notionData.siteConfig,
+      siteConfig: notionData.siteConfig || fallbackSiteConfig,
       heroData: fallbackHeroData, // Keep static hero data for now
-      skillsData: notionData.skills,
-      projectsData: notionData.projects,
-      experiencesData: notionData.experiences,
+      skillsData: notionData.skills || fallbackSkillsData,
+      projectsData: notionData.projects || fallbackProjectsData,
+      experiencesData: notionData.experiences || fallbackExperiencesData,
       educationData: fallbackEducationData,
       certificationsData: fallbackCertificationsData,
       ctaData: fallbackCtaData,
