@@ -47,7 +47,7 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   return (
     <motion.div
       ref={ref}
-      className="group relative bg-white backdrop-blur-sm border border-pink-100 rounded-2xl p-6 hover:shadow-lg hover:shadow-pink-100/50 transition-all duration-500 overflow-hidden"
+      className="group relative bg-white dark:bg-gray-800 backdrop-blur-sm border border-pink-100 dark:border-gray-700 rounded-2xl p-6 hover:shadow-lg hover:shadow-pink-100/50 dark:hover:shadow-gray-900/50 transition-all duration-500 overflow-hidden"
       variants={itemVariants}
       whileHover={{ y: -8, scale: 1.02 }}
     >
@@ -58,21 +58,21 @@ function SkillCard({ skill, index }: { skill: Skill; index: number }) {
           <div className={`p-2.5 rounded-xl bg-gradient-to-br ${skill.gradient} shadow-md`}>
             <Icon className="h-5 w-5 text-white" />
           </div>
-          <h3 className="text-base font-semibold text-gray-900">
+          <h3 className="text-base font-semibold text-gray-900 dark:text-white">
             {skill.name}
           </h3>
         </div>
 
-        <p className="text-sm text-gray-500 leading-relaxed mb-4">
+        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-4">
           {skill.description}
         </p>
         
         <div className="mt-3">
-          <div className="flex justify-between items-center text-xs text-gray-500 mb-1.5">
+          <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 mb-1.5">
             <span>熟练度</span>
-            <span className="text-gray-700 font-medium">{skill.level}%</span>
+            <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.level}%</span>
           </div>
-          <div className="h-2 bg-pink-100 rounded-full overflow-hidden">
+          <div className="h-2 bg-pink-100 dark:bg-gray-700 rounded-full overflow-hidden">
             <motion.div
               className={`h-full bg-gradient-to-r ${skill.gradient} rounded-full`}
               initial={{ width: 0 }}
@@ -91,7 +91,7 @@ export default function Skills({ skillsData }: SkillsProps) {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-white" data-scroll-section>
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900" data-scroll-section>
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}
@@ -108,10 +108,10 @@ export default function Skills({ skillsData }: SkillsProps) {
           >
             What I Do
           </motion.span>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
             核心技能
           </h2>
-          <p className="text-base text-gray-500 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base text-gray-500 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
             专注于数据科学与人工智能领域，具备从数据处理到模型部署的完整能力链。
           </p>
         </motion.div>
@@ -133,10 +133,7 @@ export default function Skills({ skillsData }: SkillsProps) {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          <p className="text-sm text-gray-500">
-            持续深耕数据科学与AI领域，保持对前沿技术的敏感度。
-          </p>
-          <p className="text-sm mt-2">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             目前正在探索：
             <span className="font-medium bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
               {' '}大语言模型 • 多模态AI • MLOps

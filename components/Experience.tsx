@@ -37,9 +37,9 @@ function TimelineItem({
         transition={{ duration: 0.4, delay: 0.3 + index * 0.15, type: 'spring' }}
       />
 
-      <div className="bg-white border border-pink-100 rounded-2xl p-6 hover:shadow-lg hover:shadow-pink-100/50 transition-all duration-300">
+      <div className="bg-white dark:bg-gray-800 border border-pink-100 dark:border-gray-700 rounded-2xl p-6 hover:shadow-lg hover:shadow-pink-100/50 dark:hover:shadow-gray-900/50 transition-all duration-300">
         <div className="flex flex-wrap items-center gap-3 mb-3">
-          <h4 className="text-xl font-bold text-gray-900">
+          <h4 className="text-xl font-bold text-gray-900 dark:text-white">
             {item.position || item.degree}
           </h4>
         </div>
@@ -47,7 +47,7 @@ function TimelineItem({
           {item.company || item.school}
         </p>
 
-        <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-500">
+        <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-500 dark:text-gray-400">
           <div className="flex items-center">
             <Calendar className="h-4 w-4 mr-2" />
             {item.period}
@@ -60,7 +60,7 @@ function TimelineItem({
           )}
         </div>
 
-        <p className="text-gray-500 mb-4">{item.description}</p>
+        <p className="text-gray-500 dark:text-gray-400 mb-4">{item.description}</p>
 
         <ul className="space-y-2">
           {item.achievements.map((achievement: string, idx: number) => (
@@ -72,7 +72,7 @@ function TimelineItem({
               transition={{ duration: 0.4, delay: 0.5 + idx * 0.1 }}
             >
               <Award className="h-5 w-5 text-pink-400 mr-2 mt-0.5 flex-shrink-0" />
-              <span className="text-gray-500">{achievement}</span>
+              <span className="text-gray-500 dark:text-gray-400">{achievement}</span>
             </motion.li>
           ))}
         </ul>
@@ -98,10 +98,10 @@ export default function Experience({ experiencesData, educationData, certificati
           <span className="inline-block text-sm font-medium text-pink-500 tracking-widest uppercase mb-4">
             Experience
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
             工作经历与教育背景
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
             我的职业发展路径和学习经历，展示了我的成长和专业能力的积累。
           </p>
         </motion.div>
@@ -117,7 +117,7 @@ export default function Experience({ experiencesData, educationData, certificati
               <div className="p-3 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 mr-4 shadow-md">
                 <Briefcase className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900">工作经历</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">工作经历</h3>
             </motion.div>
 
             <div>
@@ -137,7 +137,7 @@ export default function Experience({ experiencesData, educationData, certificati
               <div className="p-3 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500 mr-4 shadow-md">
                 <GraduationCap className="h-6 w-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900">教育背景</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">教育背景</h3>
             </motion.div>
 
             <div>
@@ -156,21 +156,21 @@ export default function Experience({ experiencesData, educationData, certificati
                 <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500 to-fuchsia-500 mr-4 shadow-md">
                   <Award className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">技能证书</h3>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">技能证书</h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {certificationsData.map((cert, index) => (
                   <motion.div
                     key={cert.name}
-                    className="bg-white border border-pink-100 rounded-xl p-4 hover:shadow-md hover:shadow-pink-100/30 transition-all duration-300"
+                    className="bg-white dark:bg-gray-800 border border-pink-100 dark:border-gray-700 rounded-xl p-4 hover:shadow-md hover:shadow-pink-100/30 dark:hover:shadow-gray-900/30 transition-all duration-300"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                     whileHover={{ y: -4 }}
                   >
-                    <h4 className="font-bold text-gray-900 mb-1">{cert.name}</h4>
-                    <p className="text-sm text-gray-500">{cert.date}</p>
+                    <h4 className="font-bold text-gray-900 dark:text-white mb-1">{cert.name}</h4>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{cert.date}</p>
                   </motion.div>
                 ))}
               </div>

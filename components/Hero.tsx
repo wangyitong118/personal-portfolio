@@ -73,7 +73,7 @@ export default function Hero({ siteConfig, heroData }: HeroProps) {
 
   return (
     <section id="hero" className="relative overflow-hidden min-h-screen flex items-center justify-center">
-      <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-white to-purple-50" />
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-purple-900/20" />
       <ParticleBackground />
       
       <div className="relative z-10 max-w-4xl mx-auto w-full px-4 sm:px-6 lg:px-8">
@@ -84,17 +84,17 @@ export default function Hero({ siteConfig, heroData }: HeroProps) {
           animate="visible"
         >
           <motion.div
-            className="inline-flex items-center space-x-2 mb-8 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-pink-200 shadow-sm"
+            className="inline-flex items-center space-x-2 mb-8 px-4 py-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-pink-200 dark:border-gray-700 shadow-sm"
             variants={itemVariants}
           >
             <Sparkles className="h-4 w-4 text-pink-500" />
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
               {heroData.badge}
             </span>
           </motion.div>
           
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-8"
             variants={itemVariants}
           >
             <span className="block">{heroData.greeting}</span>
@@ -104,12 +104,12 @@ export default function Hero({ siteConfig, heroData }: HeroProps) {
           </motion.h1>
           
           <motion.p
-            className="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
             variants={itemVariants}
           >
             {descParts.map((part, i) =>
               i % 2 === 1 ? (
-                <strong key={i} className="text-gray-900">{part}</strong>
+                <strong key={i} className="text-gray-900 dark:text-white">{part}</strong>
               ) : (
                 <span key={i}>{part}</span>
               )
@@ -130,7 +130,7 @@ export default function Hero({ siteConfig, heroData }: HeroProps) {
             </Link>
             <Link
               href="/contact"
-              className="group px-8 py-4 border-2 border-pink-200 rounded-full text-gray-700 font-semibold text-lg inline-flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:bg-pink-50 hover:border-pink-300"
+              className="group px-8 py-4 border-2 border-pink-200 dark:border-pink-400 rounded-full text-gray-700 dark:text-gray-300 font-semibold text-lg inline-flex items-center justify-center backdrop-blur-sm transition-all duration-300 hover:bg-pink-50 dark:hover:bg-gray-800 hover:border-pink-300"
             >
               <span>联系我</span>
             </Link>
@@ -143,15 +143,15 @@ export default function Hero({ siteConfig, heroData }: HeroProps) {
             {heroData.stats.map((item, index) => (
               <motion.div
                 key={index}
-                className="text-center bg-white/80 backdrop-blur-sm border border-pink-100 rounded-2xl p-6 hover:bg-white hover:shadow-lg hover:shadow-pink-100/50 transition-all duration-300"
+                className="text-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-pink-100 dark:border-gray-700 rounded-2xl p-6 hover:bg-white dark:hover:bg-gray-800 hover:shadow-lg hover:shadow-pink-100/50 dark:hover:shadow-gray-900/50 transition-all duration-300"
                 variants={itemVariants}
                 whileHover={{ y: -10 }}
               >
                 <div className="mb-4 flex justify-center">
                   <Brain className="h-10 w-10 text-pink-500" />
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">{item.value}</div>
-                <div className="text-sm text-gray-500">{item.label}</div>
+                <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{item.value}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">{item.label}</div>
               </motion.div>
             ))}
           </motion.div>
