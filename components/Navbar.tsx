@@ -4,13 +4,14 @@ import { useState } from 'react'
 import { useTheme } from './ThemeProvider'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 const navItems = [
   { name: '首页', href: '#hero' },
   { name: '关于', href: '#skills' },
   { name: '项目', href: '#projects' },
   { name: '简历', href: '#experience' },
-  { name: '作品集', href: '#projects' },
+  { name: '作品集', href: '/portfolio' },
   { name: '联系', href: '#contact' },
 ]
 
@@ -29,6 +30,17 @@ function scrollToSection(href: string) {
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, toggleTheme } = useTheme()
+  const router = useRouter()
+
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault()
+    if (href.startsWith('/')) {
+      router.push(href)
+      setMobileMenuOpen(false)
+    } else {
+      scrollToSection(href)
+    }
+  }
 
   return (
     <motion.nav
@@ -41,7 +53,7 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           <a
             href="#hero"
-            onClick={(e) => { e.preventDefault(); scrollToSection('#hero') }}
+            onClick={(e) => handleNavClick(e, '#hero')}
             className="flex items-center space-x-3 group cursor-pointer"
           >
             <div className="h-9 w-9 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 flex items-center justify-center group-hover:shadow-lg group-hover:shadow-pink-300/50 transition-shadow duration-300">
@@ -57,7 +69,7 @@ export default function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
-                onClick={(e) => { e.preventDefault(); scrollToSection(item.href) }}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-pink-500 transition-colors relative group cursor-pointer"
               >
                 {item.name}
@@ -79,7 +91,7 @@ export default function Navbar() {
             
             <a
               href="#contact"
-              onClick={(e) => { e.preventDefault(); scrollToSection('#contact') }}
+              onClick={(e) => handleNavClick(e, '#contact')}
               className="px-5 py-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white text-sm font-medium hover:shadow-lg hover:shadow-pink-300/50 transition-all duration-300 cursor-pointer"
             >
               联系我
@@ -129,7 +141,7 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={(e) => { e.preventDefault(); scrollToSection(item.href); setMobileMenuOpen(false) }}
+                  onClick={(e) => handleNavClick(e, item.href)}
                   className="block py-3 text-base font-medium text-gray-600 dark:text-gray-300 hover:text-pink-500 hover:bg-pink-50 dark:hover:bg-gray-800 px-4 rounded-xl transition-all cursor-pointer"
                 >
                   {item.name}
@@ -138,7 +150,7 @@ export default function Navbar() {
               <div className="pt-4">
                 <a
                   href="#contact"
-                  onClick={(e) => { e.preventDefault(); scrollToSection('#contact'); setMobileMenuOpen(false) }}
+                  onClick={(e) => handleNavClick(e, '#contact')}
                   className="block w-full text-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full text-white font-medium cursor-pointer"
                 >
                   联系我
