@@ -9,8 +9,8 @@ const navItems = [
   { name: '首页', href: '#hero' },
   { name: '关于', href: '#skills' },
   { name: '项目', href: '#projects' },
-  { name: '博客', href: '#projects' },
   { name: '简历', href: '#experience' },
+  { name: '作品集', href: '#projects' },
   { name: '联系', href: '#contact' },
 ]
 
