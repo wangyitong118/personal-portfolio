@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, Github, X, ArrowLeft, Filter } from 'lucide-react'
+import { ExternalLink, GitBranch, X, ArrowLeft, Filter } from 'lucide-react'
 import Link from 'next/link'
 
 interface Project {
@@ -75,7 +75,7 @@ function ProjectCard({ project, index, onSelect }: { project: Project; index: nu
             onClick={(e) => e.stopPropagation()}
             className="flex-1 py-2 px-4 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-center text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center justify-center gap-2"
           >
-            <Github className="h-4 w-4" />
+            <GitBranch className="h-4 w-4" />
             源码
           </a>
           <a
@@ -98,7 +98,7 @@ export function PortfolioClient({ projectsData }: PortfolioClientProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [filterTech, setFilterTech] = useState<string>('all')
   
-  const allTechnologies = [...new Set(projectsData.flatMap(p => p.technologies))]
+  const allTechnologies = Array.from(new Set(projectsData.flatMap(p => p.technologies)))
   
   const filteredProjects = filterTech === 'all' 
     ? projectsData 
@@ -271,7 +271,7 @@ export function PortfolioClient({ projectsData }: PortfolioClientProps) {
                     rel="noopener noreferrer"
                     className="flex-1 py-3 px-6 rounded-xl bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-center font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors flex items-center justify-center gap-2"
                   >
-                    <Github className="h-5 w-5" />
+                    <GitBranch className="h-5 w-5" />
                     查看源代码
                   </a>
                   <a
